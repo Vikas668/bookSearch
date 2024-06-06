@@ -1,11 +1,15 @@
-import React from 'react';
-import styles from './BookCard.module.css'; // Import CSS styles
+import React, { useContext, useState } from 'react';
+import { BookContext } from './BookContext';
+import styles from './BookCard.module.css';
 
-const BookCard = ({ book, onAddToBookshelf }) => {
+const BookCard = ({ book, isInBookshelf }) => {
+  const { addToBookshelf } = useContext(BookContext);
+  const [addedToBookshelf, setAddedToBookshelf] = useState(false);
+
   const handleAddToBookshelf = () => {
-    if (onAddToBookshelf) {
-      onAddToBookshelf(book);
-    }
+    addToBookshelf(book);
+    setAddedToBookshelf(true);
+    // alert('Added to Bookshelf');
   };
 
   return (
@@ -14,11 +18,15 @@ const BookCard = ({ book, onAddToBookshelf }) => {
         src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
         alt={book.title}
       />
-      <h3>{book.title}</h3>
-      <p>Author: {book.author_name?.[0]}</p>
-      <p>Publisher: {book.publisher?.[0]}</p>
-      <p>Published: {book.first_publish_year}</p>
-      <button onClick={handleAddToBookshelf}>Add to Bookshelf</button>
+      <div>
+        <p><b>Book Title: </b>{book.title}</p>
+        <p>Author: {book.author_name?.[0]}</p>
+        <p>Publisher: {book.publisher?.[0]}</p>
+        <p>Published: {book.first_publish_year}</p>
+        {!isInBookshelf && !addedToBookshelf && (
+          <button onClick={handleAddToBookshelf} className={styles.button}>Add to Bookshelf</button>
+        )}
+      </div>
     </div>
   );
 };

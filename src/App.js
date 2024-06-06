@@ -1,17 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import BookSearchPage from './pages/BookSearchPage';
 import PersonalBookshelfPage from './pages/PersonalBookshelfPage';
+import { BookProvider } from './components/BookContext';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<BookSearchPage />} />
-          <Route path="/bookshelf" element={<PersonalBookshelfPage />} />
-        </Routes>
-      </div>
+      <BookProvider>
+        <Switch>
+          <Route path="/" exact component={BookSearchPage} />
+          <Route path="/bookshelf" component={PersonalBookshelfPage} />
+        </Switch>
+      </BookProvider>
     </Router>
   );
 }
