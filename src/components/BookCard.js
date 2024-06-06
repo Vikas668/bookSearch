@@ -20,9 +20,9 @@ const BookCard = ({ book, isInBookshelf }) => {
       />
       <div>
         <p><b>Book Title: </b>{book.title}</p>
-        <p>Author: {book.author_name?.[0]}</p>
-        <p>Publisher: {book.publisher?.[0]}</p>
-        <p>Published: {book.first_publish_year}</p>
+        <p><b>Author: </b> {book.author_name?.[0]}</p>
+        <p><b>Publisher: </b> {book.publisher?.[0]}</p>
+        <p><b>Published: </b> {book.first_publish_year}</p>
         {!isInBookshelf && !addedToBookshelf && (
           <button onClick={handleAddToBookshelf} className={styles.button}>Add to Bookshelf</button>
         )}
