@@ -7,8 +7,8 @@ import styles from './BookSearchPage.module.css'; // Import CSS styles
 const BookSearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
-  const history = useHistory(); // Use useHistory hook
-
+  const history = useHistory(); // there is too traffic
+//late
   const handleSearch = async (event) => {
     setSearchTerm(event.target.value);
     const bookResults = await searchBooks(event.target.value);
